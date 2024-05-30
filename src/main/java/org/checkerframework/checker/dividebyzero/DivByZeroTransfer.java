@@ -157,8 +157,10 @@ public class DivByZeroTransfer extends CFTransfer {
                 return reflect(Err.class);
             } else if (equal(rhs, reflect(NonErr.class))) {
                 return reflect(NonErr.class);
+            } else {
+                return lub(lhs, rhs);
             }
-            
+
             // if (lhs == reflect(NonErr.class) &&
             //     rhs == reflect(Err.class)) {
             //     return reflect(Err.class);
@@ -176,7 +178,7 @@ public class DivByZeroTransfer extends CFTransfer {
             //     return reflect(NonErr.class);
             // }
     }
-    return lub(lhs, rhs);
+    return top();
   }
 
   // ========================================================================
