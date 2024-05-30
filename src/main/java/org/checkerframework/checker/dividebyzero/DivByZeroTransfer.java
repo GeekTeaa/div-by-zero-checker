@@ -76,8 +76,20 @@ public class DivByZeroTransfer extends CFTransfer {
    */
   private AnnotationMirror refineLhsOfComparison(
       Comparison operator, AnnotationMirror lhs, AnnotationMirror rhs) {
-    // TODO
-    return lhs;
+    System.out.println("refineLhsOfComparison");
+    System.out.println(operator);
+    System.out.println(lhs);
+    System.out.println(rhs);
+    System.out.println(glb(lhs, rhs));
+    System.out.println(lub(lhs, rhs));
+    System.out.println("");
+
+    switch (operator) {
+        case NE:
+            return glb(lhs, rhs);
+
+    }
+    return glb(lhs, rhs);
   }
 
   /**
@@ -97,8 +109,53 @@ public class DivByZeroTransfer extends CFTransfer {
    */
   private AnnotationMirror arithmeticTransfer(
       BinaryOperator operator, AnnotationMirror lhs, AnnotationMirror rhs) {
-    // TODO
-    return top();
+    System.out.println("arithmeticTransfer");
+    System.out.println(operator);
+    System.out.println(lhs);
+    System.out.println(rhs);
+    System.out.println(glb(lhs, rhs));
+    System.out.println(lub(lhs, rhs));
+    System.out.println("");
+
+    // if (operator == BinaryOperator.DIVIDE) {
+    //     if (lhs == reflect(NonErr.class)) {
+    //         return reflect(NonErr.class);
+    //     }
+    //     if (rhs == reflect(Err.class)) {
+    //         return reflect(Err.class);
+    //     }
+    // }
+
+    switch (operator) {
+        case DIVIDE:
+            if (equal(lhs, reflect(Err.class)) &&
+                equal(rhs, reflect(NonErr.class))) {
+                return glb(lhs, rhs);
+            }
+            if (equal(rhs, reflect(Err.class))) {
+                return reflect(Err.class);
+            } else if (equal(rhs, reflect(NonErr.class))) {
+                return reflect(NonErr.class);
+            }
+            
+            // if (lhs == reflect(NonErr.class) &&
+            //     rhs == reflect(Err.class)) {
+            //     return reflect(Err.class);
+            // }
+            // if (lhs == reflect(Err.class) &&
+            //     rhs == reflect(NonErr.class)) {
+            //     return reflect(NonErr.class);
+            // }
+            // if (lhs == bottom() &&
+            //     rhs == reflect(Err.class)) {
+            //     return reflect(Err.class);
+            // }
+            // if (lhs == reflect(Err.class) &&
+            //     rhs == reflect(NonErr.class)) {
+            //     return reflect(NonErr.class);
+            // }
+    }
+    return lub(lhs, rhs);
   }
 
   // ========================================================================
