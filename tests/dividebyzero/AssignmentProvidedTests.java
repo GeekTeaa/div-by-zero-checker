@@ -80,7 +80,7 @@ class AssignmentProvidedTests {
   // }
 
   // public static void l() {
-  //   // :: error: divide.by.zero
+  //   :: error: divide.by.zero
   //   int a = 1 / (1 - 1);
   //   int y = 1;
   //   // :: error: divide.by.zero

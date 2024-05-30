@@ -155,11 +155,60 @@ public class DivByZeroTransfer extends CFTransfer {
 
             if (equal(rhs, reflect(Err.class))) {
                 return reflect(Err.class);
+
             } else if (equal(rhs, reflect(NonErr.class))) {
                 return reflect(NonErr.class);
             } else {
                 return lub(lhs, rhs);
             }
+
+        case PLUS:
+            if (equal(lhs, reflect(Err.class)) &&
+                equal(rhs, reflect(Err.class))) {
+                return top(); // reflect(Err.class);
+            }
+            // if (equal(lhs, reflect(NonErr.class)) &&
+            //     equal(rhs, reflect(Err.class))) {
+            //     return lub(lhs, rhs); // reflect(NonErr.class);
+            // }
+
+            if (equal(lhs, reflect(Err.class)) &&
+                equal(rhs, reflect(NonErr.class))) {
+                return glb(lhs, rhs);
+            }
+
+            break;
+
+        case TIMES:
+            if (equal(lhs, reflect(Err.class)) &&
+                equal(rhs, reflect(Err.class))) {
+                return top(); // reflect(Err.class);
+            }
+
+            if (equal(lhs, reflect(NonErr.class)) &&
+                equal(rhs, reflect(Err.class))) {
+                return reflect(Err.class);
+            }
+
+            if (equal(lhs, reflect(Err.class)) &&
+                equal(rhs, reflect(NonErr.class))) {
+                return reflect(Err.class);
+            }
+
+
+            break;
+
+        case MINUS:
+            if (equal(lhs, reflect(Err.class)) &&
+                equal(rhs, reflect(Err.class))) {
+                return reflect(Err.class);
+            }
+
+            if (equal(lhs, reflect(NonErr.class)) &&
+                equal(rhs, reflect(NonErr.class))) {
+                return top(); // reflect(Err.class);
+            }
+            break;
 
             // if (lhs == reflect(NonErr.class) &&
             //     rhs == reflect(Err.class)) {
