@@ -85,11 +85,31 @@ public class DivByZeroTransfer extends CFTransfer {
     System.out.println("");
 
     switch (operator) {
-        case NE:
+        case EQ:
             return glb(lhs, rhs);
 
+        case NE:
+            if (rhs == reflect(Err.class))
+                return reflect(NonErr.class);
+            break;
+
+        case LE:
+            // if (lhs == top() &&
+            //     rhs == reflect(Err.class)) {
+            //     return glb(lhs, rhs);
+            // }
+            // break;
+
+        case GE:
+            return glb(lhs, rhs);
+
+        case GT:
+        case LT:
+            return lub(lhs, rhs);
+
+
     }
-    return glb(lhs, rhs);
+    return lhs;
   }
 
   /**
@@ -132,6 +152,7 @@ public class DivByZeroTransfer extends CFTransfer {
                 equal(rhs, reflect(NonErr.class))) {
                 return glb(lhs, rhs);
             }
+
             if (equal(rhs, reflect(Err.class))) {
                 return reflect(Err.class);
             } else if (equal(rhs, reflect(NonErr.class))) {

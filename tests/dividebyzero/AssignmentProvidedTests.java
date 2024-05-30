@@ -22,53 +22,53 @@ class AssignmentProvidedTests {
     String s = "hello";
   }
 
-  // public static void g(int y) {
-  //   if (y == 0) {
-  //     // :: error: divide.by.zero
-  //     int x = 1 / y;
-  //   } else {
-  //     int x = 1 / y;
-  //   }
+  public static void g(int y) {
+    if (y == 0) {
+      // :: error: divide.by.zero
+      int x = 1 / y;
+    } else {
+      int x = 1 / y;
+    }
 
-  //   if (y != 0) {
-  //     int x = 1 / y;
-  //   } else {
-  //     // :: error: divide.by.zero
-  //     int x = 1 / y;
-  //   }
+    if (y != 0) {
+      int x = 1 / y;
+    } else {
+      // :: error: divide.by.zero
+      int x = 1 / y;
+    }
 
-  //   if (!(y == 0)) {
-  //     int x = 1 / y;
-  //   } else {
-  //     // :: error: divide.by.zero
-  //     int x = 1 / y;
-  //   }
+    if (!(y == 0)) {
+      int x = 1 / y;
+    } else {
+      // :: error: divide.by.zero
+      int x = 1 / y;
+    }
 
-  //   if (!(y != 0)) {
-  //     // :: error: divide.by.zero
-  //     int x = 1 / y;
-  //   } else {
-  //     int x = 1 / y;
-  //   }
+    if (!(y != 0)) {
+      // :: error: divide.by.zero
+      int x = 1 / y;
+    } else {
+      int x = 1 / y;
+    }
 
-  //   if (y < 0) {
-  //     int x = 1 / y;
-  //   }
+    if (y < 0) {
+      int x = 1 / y;
+    }
 
-  //   if (y <= 0) {
-  //     // :: error: divide.by.zero
-  //     int x = 1 / y;
-  //   }
+    if (y <= 0) {
+      // :: error: divide.by.zero
+      int x = 1 / y;
+    }
 
-  //   if (y > 0) {
-  //     int x = 1 / y;
-  //   }
+    if (y > 0) {
+      int x = 1 / y;
+    }
 
-  //   if (y >= 0) {
-  //     // :: error: divide.by.zero
-  //     int x = 1 / y;
-  //   }
-  // }
+    if (y >= 0) {
+      // :: error: divide.by.zero
+      int x = 1 / y;
+    }
+  }
 
   // public static void h() {
   //   int zero_the_hard_way = 0 + 0 - 0 * 0;
